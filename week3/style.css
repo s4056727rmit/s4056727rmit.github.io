@@ -1,0 +1,81 @@
+* {
+  color: darkmagenta;
+}
+
+section {
+  text-align: center;
+  border: 2px solid black;
+}
+
+.border-green {
+  border: 3px dashed green;
+}
+
+body {
+  font-family: "Barriecito", system-ui;
+  font-weight: 400;
+  font-style: normal;
+  background-color: lightcyan;
+  font-size: 1.1rem;
+  padding: 5px;
+  text-transform: lowercase;
+  text-align: center;
+  font-weight: bold;
+  line-height: 1.2;
+}
+
+h1 {
+  color: crimson;
+  font-family: "Bebas Neue", sans-serif;
+  font-weight: 300;
+  font-style: normal;
+  font-size: 60px;
+}
+
+h2,
+h3 {
+  font-family: "Bebas Neue", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 1.3rem;
+}
+
+li {
+  color: darkcyan;
+}
+
+.blue {
+  color: blue;
+}
+
+.yellowgreen {
+  color: yellowgreen;
+}
+
+#para-1 {
+  color: darkblue;
+}
+
+#para-2 {
+  color: brown;
+}
+.barriecito-regular {
+  font-family: "Barriecito", system-ui;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.square {
+  height: 50px;
+  width: 500px;
+  background-color: aqua;
+}
+
+/* ctrl + / for comment */
+/* curly braces { } */
+/* square braces [] */
+/* parenthesis <> */
+/* round brackets () */
+/* colon : */
+/* semicolon ; */
+/* syntax - rules of writing */
