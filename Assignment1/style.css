@@ -1,0 +1,212 @@
+.rubik {
+  font-family: "Rubik", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  font-family: rubik;
+}
+
+.roboto {
+  font-family: "Roboto", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: normal;
+  font-style: normal;
+  font-variation-settings: "wdth" 100;
+}
+
+/* Rather than relying on images, I wanted to experiment in purely designing a website using html and css coding... which now I feel like it's quite pointless. */
+/* Since my background consists of overlapping shapes, I could not position any of the contents as relative, as it got pushed outside the background. */
+.rect1 {
+  height: 407px;
+  width: 500px;
+  background-color: #7f58af;
+  display: flex;
+  position: absolute;
+}
+
+.rect2 {
+  height: 407px;
+  width: 400px;
+  background-color: #64c5eb;
+  display: flex;
+  position: absolute;
+  bottom: 0;
+}
+
+.rect3 {
+  height: 407px;
+  width: 400px;
+  background-color: #e84d8a;
+  display: flex;
+  position: absolute;
+  right: 0;
+}
+
+.rect4 {
+  height: 407px;
+  width: 500px;
+  background-color: #feb326;
+  display: flex;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}
+
+.circle1 {
+  height: 1200px;
+  width: 1200px;
+  left: 50%;
+  right: 50%;
+  background-color: palegoldenrod;
+  border-radius: 50%;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  overflow: hidden;
+  bottom: -50px;
+}
+/* Overflow does not work with absolute position, but cannot fix the shape in position without giving it absolute value. */
+/* Some colours are in hex code because I gained them from a colour palette. The rest is in premade for efficiency */
+.circle2 {
+  height: 1150px;
+  width: 1150px;
+  left: 50%;
+  background-color: black;
+  border-radius: 50%;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  overflow: hidden;
+  bottom: -50px;
+}
+
+.circle3 {
+  height: 80px;
+  width: 80px;
+  top: 70%;
+  left: 25%;
+  background-color: #e84d8a;
+  border-radius: 50%;
+  position: absolute;
+}
+
+.circle4 {
+  height: 80px;
+  width: 80px;
+  top: 70%;
+  left: 40%;
+  background-color: #feb326;
+  border-radius: 50%;
+  position: absolute;
+}
+
+.circle5 {
+  height: 80px;
+  width: 80px;
+  top: 70%;
+  left: 55%;
+  background-color: #64c5eb;
+  border-radius: 50%;
+  position: absolute;
+}
+
+.circle6 {
+  height: 80px;
+  width: 80px;
+  top: 70%;
+  left: 70%;
+  background-color: #7f58af;
+  border-radius: 50%;
+  position: absolute;
+}
+
+.title {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  top: 50;
+  left: 50;
+  width: 100%;
+  height: 68%;
+  color: white;
+  font-size: 68px;
+}
+
+.text {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  top: 61%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 46px;
+}
+
+.link1 {
+  font-family: roboto;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  top: 73.1%;
+  left: 26.1%;
+  color: white;
+  font-size: 26px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.link2 {
+  font-family: roboto;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  top: 73.1%;
+  left: 41.1%;
+  color: white;
+  font-size: 26px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.link3 {
+  font-family: roboto;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  top: 73.1%;
+  left: 56.1%;
+  color: white;
+  font-size: 26px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.link4 {
+  font-family: roboto;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  top: 73.1%;
+  left: 70.1%;
+  color: white;
+  font-size: 26px;
+  text-decoration: none;
+  font-weight: bold;
+}

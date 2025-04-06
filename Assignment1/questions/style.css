@@ -1,0 +1,516 @@
+.roboto {
+  font-family: "Roboto", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: normal;
+  font-style: normal;
+  font-variation-settings: "wdth" 100;
+}
+
+body {
+  background-color: black;
+}
+
+* {
+  color: white;
+  font-family: roboto;
+}
+
+.squarebase {
+  height: 1579%;
+  width: 100%;
+  background-color: black;
+  display: flex;
+  position: absolute;
+}
+
+.back {
+  position: fixed;
+  color: white;
+  font-size: 32px;
+  text-decoration: none;
+  left: 40px;
+  top: 20px;
+}
+
+.circlebase1 {
+  height: 710px;
+  width: 710px;
+  left: 50%;
+  right: 50%;
+  background-color: palegoldenrod;
+  border-radius: 50%;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 400px;
+}
+
+.circlebase2 {
+  height: 710px;
+  width: 710px;
+  left: 50%;
+  right: 50%;
+  background-color: palegoldenrod;
+  border-radius: 50%;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 1400px;
+}
+
+.circlebase3 {
+  height: 710px;
+  width: 710px;
+  left: 50%;
+  right: 50%;
+  background-color: palegoldenrod;
+  border-radius: 50%;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 2400px;
+}
+
+.circlebase4 {
+  height: 710px;
+  width: 710px;
+  left: 50%;
+  right: 50%;
+  background-color: palegoldenrod;
+  border-radius: 50%;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 3400px;
+}
+
+.circlebase5 {
+  height: 710px;
+  width: 710px;
+  left: 50%;
+  right: 50%;
+  background-color: palegoldenrod;
+  border-radius: 50%;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 4400px;
+}
+
+.circlebase6 {
+  height: 710px;
+  width: 710px;
+  left: 50%;
+  right: 50%;
+  background-color: palegoldenrod;
+  border-radius: 50%;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 5400px;
+}
+
+.circlebase7 {
+  height: 710px;
+  width: 710px;
+  left: 50%;
+  right: 50%;
+  background-color: palegoldenrod;
+  border-radius: 50%;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 6400px;
+}
+
+.circlebase8 {
+  height: 710px;
+  width: 710px;
+  left: 50%;
+  right: 50%;
+  background-color: palegoldenrod;
+  border-radius: 50%;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 7400px;
+}
+
+.circlebase9 {
+  height: 710px;
+  width: 710px;
+  left: 50%;
+  right: 50%;
+  background-color: palegoldenrod;
+  border-radius: 50%;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 8400px;
+}
+
+.circlebase10 {
+  height: 710px;
+  width: 710px;
+  left: 50%;
+  right: 50%;
+  background-color: palegoldenrod;
+  border-radius: 50%;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 9400px;
+}
+.circlebase11 {
+  height: 710px;
+  width: 710px;
+  left: 50%;
+  right: 50%;
+  background-color: palegoldenrod;
+  border-radius: 50%;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 10400px;
+}
+
+.circlebase12 {
+  height: 710px;
+  width: 710px;
+  left: 50%;
+  right: 50%;
+  background-color: palegoldenrod;
+  border-radius: 50%;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 11400px;
+}
+
+.circlebase13 {
+  height: 710px;
+  width: 710px;
+  left: 50%;
+  right: 50%;
+  background-color: palegoldenrod;
+  border-radius: 50%;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 12400px;
+}
+
+.circle1 {
+  height: 690px;
+  width: 690px;
+  left: 50%;
+  right: 50%;
+  background-color: #e84d8a;
+  border-radius: 50%;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 400px;
+}
+
+.circle2 {
+  height: 690px;
+  width: 690px;
+  left: 50%;
+  right: 50%;
+  background-color: #e84d8a;
+  border-radius: 50%;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 1400px;
+}
+
+.circle3 {
+  height: 690px;
+  width: 690px;
+  left: 50%;
+  right: 50%;
+  background-color: #e84d8a;
+  border-radius: 50%;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 2400px;
+}
+
+.circle4 {
+  height: 690px;
+  width: 690px;
+  left: 50%;
+  right: 50%;
+  background-color: #feb326;
+  border-radius: 50%;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 3400px;
+}
+
+.circle5 {
+  height: 690px;
+  width: 690px;
+  left: 50%;
+  right: 50%;
+  background-color: #feb326;
+  border-radius: 50%;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 4400px;
+}
+
+.circle6 {
+  height: 690px;
+  width: 690px;
+  left: 50%;
+  right: 50%;
+  background-color: #feb326;
+  border-radius: 50%;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 5400px;
+}
+
+.circle7 {
+  height: 690px;
+  width: 690px;
+  left: 50%;
+  right: 50%;
+  background-color: #64c5eb;
+  border-radius: 50%;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 6400px;
+}
+
+.circle8 {
+  height: 690px;
+  width: 690px;
+  left: 50%;
+  right: 50%;
+  background-color: #64c5eb;
+  border-radius: 50%;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 7400px;
+}
+
+.circle9 {
+  height: 690px;
+  width: 690px;
+  left: 50%;
+  right: 50%;
+  background-color: #64c5eb;
+  border-radius: 50%;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 8400px;
+}
+
+.circle10 {
+  height: 690px;
+  width: 690px;
+  left: 50%;
+  right: 50%;
+  background-color: #7f58af;
+  border-radius: 50%;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 9400px;
+}
+
+.circle11 {
+  height: 690px;
+  width: 690px;
+  left: 50%;
+  right: 50%;
+  background-color: #7f58af;
+  border-radius: 50%;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 10400px;
+}
+
+.circle12 {
+  height: 690px;
+  width: 690px;
+  left: 50%;
+  right: 50%;
+  background-color: #7f58af;
+  border-radius: 50%;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 11400px;
+}
+
+.circle13 {
+  height: 690px;
+  width: 690px;
+  left: 50%;
+  right: 50%;
+  background-color: #7f58af;
+  border-radius: 50%;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 12400px;
+}
+
+/* As I progressed, I grapsed better understanding of how to use classes, however I've already made copies of the shapes and will take too long to clean it up for the exact same effects. */
+
+/*
+.circlebase1{
+  height: 710px;
+  width: 710px;
+  left: 50%;
+  right: 50%;
+  background-color: palegoldenrod;
+  border-radius: 50%;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 400px;
+  grid-row-start: 0px;
+  grid-row-end: 12400px;
+  grid-template-rows: repeat(13, 1fr);
+}
+ Multiple attempts to use grid function, however could not figure out how to set a background larger than the screen size.  
+*/
+
+/*
+.question{
+  display: grid;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  text-align: center;  
+  top: 200px;
+  font-size: 30px;
+  gap: 800px;
+  grid-template-rows: repeat(13, 1fr);   
+}
+  Was able to successfully use grid function. However, still struggling to find accurate gap length due to the long length of the webpage. Should be able to utilise it after a little more learning.
+ */
+
+.question1 {
+  top: 200px;
+}
+
+.question2 {
+  top: 1200px;
+}
+
+.question3 {
+  top: 2200px;
+}
+
+.question4 {
+  top: 3200px;
+}
+
+.question5 {
+  top: 4200px;
+}
+
+.question6 {
+  top: 5200px;
+}
+
+.question7 {
+  top: 6200px;
+}
+
+.question8 {
+  top: 7200px;
+}
+
+.question9 {
+  top: 8200px;
+}
+
+.question10 {
+  top: 9200px;
+}
+
+.question11 {
+  top: 10200px;
+}
+
+.question12 {
+  top: 11200px;
+}
+
+.question13 {
+  top: 12200px;
+}
+
+h2 {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-size: 30px;
+  width: 100%;
+}
+
+h3 {
+  position: absolute;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-size: 19px;
+  width: 100%;
+}
+
+.columntext {
+  float: left;
+  font-size: 20px;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-bottom: 12px;
+}
+
+.row {
+  text-align: left;
+  display: flex;
+  position: absolute;
+  justify-content: center;
+  width: 100%;
+  top: 1450px;
+}
+
+.answer1 {
+  top: 450px;
+}
+
+.answer3 {
+  top: 2450px;
+}
+
+.answer4 {
+  top: 3450px;
+}
+
+.answer5 {
+  top: 4450px;
+}
+
+.answer6 {
+  top: 5450px;
+}
+
+.answer7 {
+  top: 6450px;
+}
+
+.answer8 {
+  top: 7450px;
+}
+
+.answer9 {
+  top: 8380px;
+}
+
+.answer10 {
+  top: 9450px;
+}
+
+.answer11 {
+  top: 10450px;
+}
+
+.answer12 {
+  top: 11366px;
+  /*margin-bottom: ; Why does this not work ;-; */
+}
+
+.answer13 {
+  top: 12450px;
+}
