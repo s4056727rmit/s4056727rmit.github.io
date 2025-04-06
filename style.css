@@ -29,7 +29,7 @@ body {
 
 .rect2 {
   height: 50%;
-  width: 50%px;
+  width: 50%;
   background-color: #64c5eb;
   display: flex;
   position: absolute;
