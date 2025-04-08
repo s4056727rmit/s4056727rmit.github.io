@@ -20,25 +20,26 @@ body {
 /* Rather than relying on images, I wanted to experiment in purely designing a website using html and css coding... which now I feel like it's quite pointless. */
 /* Since my background consists of overlapping shapes, I could not position any of the contents as relative, as it got pushed outside the background. */
 .rect1 {
-  height: 407px;
-  width: 500px;
+  height: 50%;
+  width: 50%;
   background-color: #7f58af;
   display: flex;
   position: absolute;
 }
 
 .rect2 {
-  height: 407px;
-  width: 400px;
+  height: 50%;
+  width: 50%;
   background-color: #64c5eb;
   display: flex;
   position: absolute;
   bottom: 0;
+  max-width: 100%;
 }
 
 .rect3 {
-  height: 407px;
-  width: 400px;
+  height: 50%;
+  width: 50%;
   background-color: #e84d8a;
   display: flex;
   position: absolute;
@@ -46,8 +47,8 @@ body {
 }
 
 .rect4 {
-  height: 407px;
-  width: 500px;
+  height: 50%;
+  width: 50%;
   background-color: #feb326;
   display: flex;
   position: absolute;
@@ -56,8 +57,8 @@ body {
 }
 
 .circle1 {
-  height: 1200px;
-  width: 1200px;
+  height: 1210px;
+  width: 1210px;
   left: 50%;
   right: 50%;
   background-color: palegoldenrod;
@@ -67,6 +68,7 @@ body {
   top: 50%;
   overflow: hidden;
   bottom: -50px;
+  max-height: 150%;
 }
 /* Overflow does not work with absolute position, but cannot fix the shape in position without giving it absolute value. */
 /* Some colours are in hex code because I gained them from a colour palette. The rest is in premade for efficiency */
