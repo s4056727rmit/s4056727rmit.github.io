@@ -1,0 +1,101 @@
+/*body {
+    
+    margin: 0;
+    height: 200vh;
+    overflow-y: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-family: sans-serif;
+    background: linear-gradient(#000000 70%, #fff64e 160%);
+}*/
+
+html {
+  scroll-behavior: smooth;
+  overflow: hidden;
+}
+* ::-webkit-scrollbar {
+  margin: 0;
+  display: none;
+  overflow: hidden;
+}
+
+body {
+  margin: 0;
+  height: 100vh;
+}
+
+#player {
+  height: 100vh;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  flex-direction: column;
+  font-family: sans-serif;
+  background-color: #000000;
+  background-image: url(https://cdn.pixabay.com/photo/2023/12/05/15/07/window-8431870_1280.jpg);
+  background-size: cover;
+  background-position: bottom;
+}
+
+.hide-cursor {
+  cursor: none;
+}
+
+.example::-webkit-scrollbar {
+  display: none;
+}
+
+#menu-anchor {
+  font-size: 0;
+}
+
+#player-anchor {
+  font-size: 0;
+}
+#menu {
+  height: 100vh;
+  margin: 0;
+  padding-top: 50px;
+  padding-right: 100px;
+  padding-left: 100px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+  font-family: sans-serif;
+  background: linear-gradient(#000000 70%, #1ffbff 160%);
+  font-size: 30px;
+}
+
+section {
+  max-width: 50px;
+}
+
+fieldset {
+  border: 5px solid rgb(255, 255, 255);
+}
+legend {
+  text-align: center;
+  color: white;
+  border-style: solid;
+  border-color: black;
+  border-width: 20px;
+}
+
+/* I wanted to add some complexity to the border and discovered fieldset and legend tags from https://stackoverflow.com/questions/6357718/how-to-hide-a-part-of-a-css-borderline-nicely. */
+
+button {
+  cursor: pointer;
+}
+
+p {
+  color: white;
+}
+
+h1 {
+  color: white;
+}

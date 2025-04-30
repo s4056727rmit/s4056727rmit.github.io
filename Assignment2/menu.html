@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Jinseo Park Assignment 2</title>
+    <link rel="stylesheet" href="menustyle.css" />
+    <link rel="reset" href="reset.css" />
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <p id="player-anchor">menu</p>
+    <div id="player">
+      <div class="content">
+        <h1>Nothing is Playing right now</h1>
+        <p>Select a playlist to start your study session</p>
+        <a href="menu.html#menu-anchor">
+          <button id="down-button">Go Down</button>
+        </a>
+        <section class="music-control">
+          <button id="play-pause-button"></button>
+          <button id="skip-button"></button>
+          <p class="slidecontainer">
+            <input
+              type="range"
+              min="1"
+              max="100"
+              value="100"
+              class="slider"
+              id="myRange"
+            />
+          </p>
+        </section>
+      </div>
+    </div>
+    <div>
+      <p id="menu-anchor">menu</p>
+      <div id="menu">
+        <section>
+          <fieldset>
+            <legend>Playlist</legend>
+            <p>hey</p>
+          </fieldset>
+        </section>
+        <a href="menu.html#player-anchor">
+          <button id="up-button">Go Up</button>
+        </a>
+        <section>
+          <p>More to explore...</p>
+        </section>
+      </div>
+    </div>
+  </body>
+</html>

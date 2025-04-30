@@ -1,0 +1,26 @@
+::-webkit-scrollbar {
+  margin: 0;
+  display: none;
+  overflow: hidden;
+}
+
+body {
+  margin: 0;
+  height: 100vh;
+  background: linear-gradient(#000000 70%, #fff64e 160%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  font-family: sans-serif;
+  color: white;
+}
+
+button {
+  color: white;
+  font-size: 20px;
+  background-color: black;
+  border-color: white;
+  border-style: hidden;
+  cursor: pointer;
+}
