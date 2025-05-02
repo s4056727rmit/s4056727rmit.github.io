@@ -10,45 +10,113 @@
   </head>
   <body>
     <p id="player-anchor">menu</p>
-    <div id="player">
-      <div class="content">
+    <div id="player-background">
+        <div class="content">
+        <div id="player">
+        <p class="place-holder">hi</p>
+        <p class="place-holder">hi</p>
+        <p class="place-holder">hi</p>
+        <p class="place-holder">hi</p>
+        <p class="place-holder">hi</p>
+        <p class="place-holder">hi</p>
+        <p class="place-holder">hi</p>
+        <p class="place-holder">hi</p>
+        <p class="place-holder">hi</p>
+        <p class="place-holder">hi</p>
         <h1>Nothing is Playing right now</h1>
         <p>Select a playlist to start your study session</p>
-        <a href="menu.html#menu-anchor">
-          <button id="down-button">Go Down</button>
-        </a>
+        <p class="place-holder">hi</p> 
         <section class="music-control">
-          <button id="play-pause-button"></button>
-          <button id="skip-button"></button>
-          <p class="slidecontainer">
+            <button class="ui" id="previous-button">
+                <img src="ui/Previous Button.png" alt="Previous Button" >
+            </button>
+          <button class="ui" id="play-pause-button">
+            <img src="ui/Play Button.png" alt="Play Button">
+          </button>
+          <button class="ui" id="skip-button">
+            <img src="ui/Skip Button.png" alt="Skip Button">
+          </button>
+          <p class="volume-slider">
             <input
               type="range"
               min="1"
               max="100"
               value="100"
               class="slider"
-              id="myRange"
-            />
-          </p>
+              id="volume-range">
+            </p>
+          <audio src="music/just-relax-11157.mp3" controls></audio>
         </section>
-      </div>
+        
     </div>
+        <a href="menu.html#menu-anchor">
+            <button class="buttons" id="down-button">
+              <img src="ui/Arrow Down.png" alt="Down Button"/>
+            </button>
+          </a>
+    </div>
+</div>
+     </div>
+
     <div>
       <p id="menu-anchor">menu</p>
       <div id="menu">
         <section>
           <fieldset>
-            <legend>Playlist</legend>
-            <p>hey</p>
+            <legend>Current Playlist</legend>
+            <ul>
+                <li>hi</li>
+                <li>hello</li>
+                <li>steves lava chicken its tasty as yeah</li>
+                <li>moonlight sonata - sento nasor</li>
+
+            </ul>
           </fieldset>
         </section>
         <a href="menu.html#player-anchor">
-          <button id="up-button">Go Up</button>
+          <button class="buttons" id="up-button">
+            <img src="ui/Arrow Up.png" alt="Up Button" />
+          </button>
         </a>
         <section>
           <p>More to explore...</p>
         </section>
       </div>
+
+      ..
+      
+      <div class="container">
+        <div class="playlists">
+            <h2>Playlists</h2>
+            <div class="playlist" data-playlist="1">Playlist 1</div>
+            <div class="playlist" data-playlist="2">Playlist 2</div>
+            <div class="playlist" data-playlist="3">Playlist 3</div>
+            <div class="playlist" data-playlist="4">Playlist 4</div>
+        </div>
+        
+        <div class="player">
+            <h2>Music Player</h2>
+            <div class="now-playing" id="nowPlaying">Nothing is playing right now</div>
+            
+            <div class="controls">
+                <button id="prevButton">⏮</button>
+                <button id="playPauseButton">▶</button>
+                <button id="nextButton">⏭</button>
+                
+                <div class="volume">
+                    <span>🔊</span>
+                    <input type="range" id="volumeSlider" min="0" max="100" value="80">
+                </div>
+                
+                <button class="loop-button" id="loopButton">🔁</button>
+            </div>
+            
+            <h3>Current Playlist Tracks</h3>
+            <ul class="track-list" id="trackList">
+                <!-- Tracks will be added here dynamically -->
+            </ul>
+        </div>
+    </div>
     </div>
   </body>
 </html>
