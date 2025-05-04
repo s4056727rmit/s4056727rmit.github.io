@@ -78,35 +78,152 @@ const playlists = {
     } /* https://pixabay.com/music/modern-classical-daylight-piano-music-292993/ */,
     {
       id: 105,
-      source: "music/winter-warmth/just-relax-11157.mp3",
-      title: "Just Relax 11157",
-    } /*https://pixabay.com/music/modern-classical-beautiful-piano-music-331537/ */,
+      source: "music/winter-warmth/aurora-piano-music-292992.mp3",
+      title: "Aurora Piano Music 292992",
+    } /* https://pixabay.com/music/modern-classical-aurora-piano-music-292992/ */,
     {
       id: 106,
-      source: "music/winter-warmth/just-relax-11157.mp3",
-      title: "Just Relax 11157",
-    } /*https://pixabay.com/music/modern-classical-beautiful-piano-music-331537/ */,
+      source:
+        "music/winter-warmth/i-am-falling-high-relaxing-piano-music-311529.mp3",
+      title: "I am Falling High Relaxing Piano Music 311529",
+    } /* https://pixabay.com/music/modern-classical-i-am-falling-high-relaxing-piano-music-311529/ */,
     {
       id: 107,
-      source: "music/winter-warmth/just-relax-11157.mp3",
-      title: "Just Relax 11157",
-    } /*https://pixabay.com/music/modern-classical-beautiful-piano-music-331537/ */,
+      source: "music/winter-warmth/relaxing-melody-124570.mp3",
+      title: "Relaxing Melody 124570",
+    } /* https://pixabay.com/music/modern-classical-relaxing-melody-124570/ */,
   ],
   2: [
-    { id: 201, source: "path/to/track201.mp3", title: "Track 201" },
-    { id: 202, source: "path/to/track202.mp3", title: "Track 202" },
-    { id: 203, source: "path/to/track203.mp3", title: "Track 203" },
+    {
+      id: 201,
+      source: "music/outer-orbits/time-to-relax-11152.mp3",
+      title: "Time To Relax 11152",
+    } /* https://pixabay.com/music/beats-time-to-relax-11152/ */,
+
+    {
+      id: 202,
+      source: "music/outer-orbits/like-a-dream-future-garage-music-333588.mp3",
+      title: "Like A Dream Future Garage Music 333588",
+    } /* https://pixabay.com/music/beats-like-a-dream-future-garage-music-333588/ */,
+
+    {
+      id: 203,
+      source: "music/outer-orbits/background-music-soft-calm-333111.mp3",
+      title: "Background Music Soft Calm 333111",
+    } /* https://pixabay.com/music/upbeat-background-music-soft-calm-333111/ */,
+
+    {
+      id: 204,
+      source: "music/outer-orbits/elegant-abstract-ambient-334378.mp3",
+      title: "Elegant Abstract Ambient 334378",
+    } /* https://pixabay.com/music/beats-elegant-abstract-ambient-334378/ */,
+
+    {
+      id: 205,
+      source: "music/outer-orbits/abstract-trap-vibe_orbital-303651.mp3",
+      title: "Abstract Trap Vibe Orbital 303651",
+    } /* https://pixabay.com/music/future-bass-abstract-trap-vibe-orbital-303651/ */,
+
+    {
+      id: 206,
+      source:
+        "music/outer-orbits/in-slow-motion-inspiring-ambient-lounge-219592.mp3",
+      title: "In Slow Motion Inspiring Ambient Lounge 219592",
+    } /* https://pixabay.com/music/future-bass-in-slow-motion-inspiring-ambient-lounge-219592/ */,
+
+    {
+      id: 207,
+      source: "music/outer-orbits/abstract-beauty-248162.mp3",
+      title: "Abstract Beauty 248162",
+    } /* https://pixabay.com/music/beats-abstract-beauty-248162/ */,
   ],
+
   3: [
-    { id: 301, source: "path/to/track301.mp3", title: "Track 301" },
-    { id: 302, source: "path/to/track302.mp3", title: "Track 302" },
-    { id: 303, source: "path/to/track303.mp3", title: "Track 303" },
-    { id: 304, source: "path/to/track304.mp3", title: "Track 304" },
-    { id: 305, source: "path/to/track305.mp3", title: "Track 305" },
+    {
+      id: 301,
+      source: "music/summer-seaside/peaceful-background-333476.mp3",
+      title: "Peaceful Background 333476",
+    } /* https://pixabay.com/music/upbeat-peaceful-background-333476/ */,
+
+    {
+      id: 302,
+      source: "summer-seaside/summer-tropical-happy-314068.mp3",
+      title: "Summer Tropical Happy 314068",
+    } /* https://pixabay.com/music/upbeat-summer-tropical-happy-314068/ */,
+
+    {
+      id: 303,
+      source: "music/summer-seaside/no-copyright-music-upbeat-fun-329743.mp3",
+      title: "No Copyright Music Upbeat Fun 329743",
+    } /* https://pixabay.com/music/upbeat-no-copyright-music-upbeat-fun-329743/ */,
+    {
+      id: 304,
+      source: "music/summer-seaside/summer-317374.mp3",
+      title: "Summer 317374",
+    } /* https://pixabay.com/music/upbeat-summer-317374/ */,
+    {
+      id: 305,
+      source:
+        "summer-seaside/relax-your-thoughts-background-music-for-video-deep-house-version-309418.mp3",
+      title:
+        "Relax Your Thoughts Background Music For Video Deep House Version 309418",
+    } /* https://pixabay.com/music/upbeat-relax-your-thoughts-background-music-for-video-deep-house-version-309418/ */,
+    {
+      id: 306,
+      source: "music/summer-seaside/background-music-upbeat-335026.mp3",
+      title: "Background Music Upbeat 335026",
+    } /* https://pixabay.com/music/upbeat-background-music-upbeat-335026/ */,
+
+    {
+      id: 307,
+      source: "music/summer-seaside/upbeat-background-music-278928.mp3",
+      title: "Upbeat Background Music 278928",
+    } /* https://pixabay.com/music/pop-upbeat-background-music-278928/ */,
   ],
   4: [
-    { id: 401, source: "path/to/track401.mp3", title: "Track 401" },
-    { id: 402, source: "path/to/track402.mp3", title: "Track 402" },
+    {
+      id: 401,
+      source: "music/soaring-sky/emotional-piano-music-256262.mp3",
+      title: "Emotional Piano Music 256262",
+      /* https://pixabay.com/music/modern-classical-emotional-piano-music-256262/ */
+    },
+    {
+      id: 402,
+      source: "music/soaring-sky/love-romantic-hopeful-music-333017.mp3",
+      title: "Emotional Piano Music 256262",
+      /* https://pixabay.com/music/wedding-love-romantic-hopeful-music-333017/ */
+    },
+    {
+      id: 403,
+      source:
+        "music/soaring-sky/delicate-reverie-background-piano-music-269613.mp3",
+      title: "Delicate Reverie Background Piano Music 269613",
+      /* https://pixabay.com/music/modern-classical-delicate-reverie-background-piano-music-269613/ */
+    },
+    {
+      id: 404,
+      source: "music/soaring-sky/relaxing-piano-music-for-saturday-263226.mp3",
+      title: "Relaxing Music For Saturday 263226",
+      /* https://pixabay.com/music/modern-classical-relaxing-piano-music-for-saturday-263226/ */
+    },
+    {
+      id: 405,
+      source: "music/soaring-sky/relaxing-music-spring-188658.mp3",
+      title: "Relaxing Music Spring 188658",
+      /* https://pixabay.com/music/beautiful-plays-relaxing-music-spring-188658/ */
+    },
+    {
+      id: 406,
+      source: "music/soaring-sky/love-romantic-hopeful-music-333017.mp3",
+      title: "Emotional Piano Music 256262",
+      /* https://pixabay.com/music/wedding-love-romantic-hopeful-music-333017/ */
+    },
+    {
+      id: 407,
+      source: "music/soaring-sky/love-romantic-hopeful-music-333017.mp3",
+      title: "Emotional Piano Music 256262",
+      /* https://pixabay.com/music/wedding-love-romantic-hopeful-music-333017/ */
+    },
   ],
 };
 
@@ -123,8 +240,8 @@ const buttonIcons = {
 // Background image sources for each playlist
 const playlistBackground = {
   1: "https://cdn.pixabay.com/photo/2023/12/05/15/07/window-8431870_1280.jpg",
-  2: "images/background-playlist2.jpg", // Background for playlist 2
-  3: "images/background-playlist3.jpg", // Background for playlist 3
+  2: "https://cdn.pixabay.com/photo/2018/08/15/13/10/new-year-background-3608029_1280.jpg", // Background for playlist 2
+  3: "https://cdn.pixabay.com/photo/2021/02/20/18/11/sea-6034191_1280.jpg", // Background for playlist 3
   4: "images/background-playlist4.jpg", // Background for playlist 4
 };
 
@@ -347,10 +464,11 @@ function playNextTrack() {
     currentTrackNumber++;
   }
 
+  // Always set isPlaying to true when skip button is pressed
+  isPlaying = true;
+
   updatePlayerDisplay();
-  if (isPlaying) {
-    playCurrentTrack();
-  }
+  playCurrentTrack(); // Always play the track, regardless of previous state
 }
 
 // Play the previous track
@@ -373,10 +491,11 @@ function playPreviousTrack() {
     currentTrackNumber--;
   }
 
+  // Always set isPlaying to true when previous button is pressed
+  isPlaying = true;
+
   updatePlayerDisplay();
-  if (isPlaying) {
-    playCurrentTrack();
-  }
+  playCurrentTrack(); // Always play the track, regardless of previous state
 }
 
 // Toggle play/pause
