@@ -54,485 +54,389 @@ mouseActivity();
 /* I wanted to have the fading feature for the main player screen and used ClaudeAI and W3School to reassemble the generated code with my knowledge and IT WORKED!
 I had a little trouble with it because I aimed to hide the content with both mouse click and move, but I failed to try to add second input to the code and ended up just adding a second feature instead.*/
 
-document.addEventListener("DOMContentLoaded", function () {
-  // Music data - in a real application, this would likely come from a database
-  const playlists = [
-    {
-      id: 1,
-      name: "Winter Night",
-      songs: [
-        { id: 101, title: "Pop Song One", value: 10 },
-        { id: 102, title: "Pop Song Two", value: 15 },
-        { id: 103, title: "Pop Song Three", value: 20 },
-      ],
-    },
-    {
-      id: 2,
-      name: "Outer Space",
-      songs: [
-        { id: 201, title: "Rock Song One", value: 25 },
-        { id: 202, title: "Rock Song Two", value: 30 },
-        { id: 203, title: "Rock Song Three", value: 35 },
-        { id: 204, title: "Rock Song Four", value: 40 },
-      ],
-    },
-    {
-      id: 3,
-      name: "Crystal Blue",
-      songs: [
-        { id: 301, title: "Jazz Song One", value: 45 },
-        { id: 302, title: "Jazz Song Two", value: 50 },
-      ],
-    },
-    {
-      id: 4,
-      name: "Soaring Sky",
-      songs: [
-        { id: 401, title: "Study Song One", value: 55 },
-        { id: 402, title: "Study Song Two", value: 60 },
-        { id: 403, title: "Study Song Three", value: 65 },
-        { id: 404, title: "Study Song Four", value: 70 },
-        { id: 405, title: "Study Song Five", value: 75 },
-      ],
-    },
-    {
-      id: 5,
-      name: "Fresh Walk",
-      songs: [
-        { id: 401, title: "Study Song One", value: 55 },
-        { id: 402, title: "Study Song Two", value: 60 },
-        { id: 403, title: "Study Song Three", value: 65 },
-        { id: 404, title: "Study Song Four", value: 70 },
-        { id: 405, title: "Study Song Five", value: 75 },
-      ],
-    },
-    {
-      id: 6,
-      name: "Sinking down",
-      songs: [
-        { id: 401, title: "Study Song One", value: 55 },
-        { id: 402, title: "Study Song Two", value: 60 },
-        { id: 403, title: "Study Song Three", value: 65 },
-        { id: 404, title: "Study Song Four", value: 70 },
-        { id: 405, title: "Study Song Five", value: 75 },
-      ],
-    },
-  ];
-
-  // Player state
-  let currentPlaylist = null;
-  let currentSongIndex = 0;
-  let isPlaying = false;
-  let volume = 100;
-  let isLooping = false;
-
-  // DOM Elements
-  const playlistEls = document.querySelectorAll(".playlist");
-  const songTitleEl = document.querySelector(".song-title");
-  const playlistNameEl = document.querySelector(".playlist-name");
-  const playBtn = document.querySelector(".play-btn");
-  const prevBtn = document.querySelector(".prev-btn");
-  const nextBtn = document.querySelector(".next-btn");
-  const loopBtn = document.querySelector(".loop-btn");
-  const volumeSlider = document.querySelector(".volume-slider");
-
-  // Initially disable control buttons when no playlist is selected
-  prevBtn.disabled = true;
-  playBtn.disabled = true;
-  nextBtn.disabled = true;
-  loopBtn.disabled = true;
-
-  // Add event listeners to playlists
-  playlistEls.forEach((playlistEl) => {
-    playlistEl.addEventListener("click", function () {
-      const playlistId = parseInt(this.getAttribute("data-id"));
-      selectPlaylist(playlistId);
-    });
-  });
-
-  // Add event listeners to player controls
-  playBtn.addEventListener("click", togglePlay);
-  prevBtn.addEventListener("click", playPrevious);
-  nextBtn.addEventListener("click", playNext);
-  loopBtn.addEventListener("click", toggleLoop);
-  volumeSlider.addEventListener("input", adjustVolume);
-
-  // Function to select a playlist
-  function selectPlaylist(id) {
-    // Remove active class from all playlists
-    playlistEls.forEach((el) => el.classList.remove("active"));
-
-    // Add active class to selected playlist
-    const selectedPlaylistEl = document.querySelector(
-      `.playlist[data-id="${id}"]`
-    );
-    if (selectedPlaylistEl) {
-      selectedPlaylistEl.classList.add("active");
-    }
-
-    // Update current playlist
-    currentPlaylist = playlists.find((playlist) => playlist.id === id);
-    currentSongIndex = 0;
-
-    // Enable controls
-    prevBtn.disabled = false;
-    playBtn.disabled = false;
-    nextBtn.disabled = false;
-    loopBtn.disabled = false;
-
-    // Start playing the first song
-    playSong();
-  }
-
-  // Function to play a song
-  function playSong() {
-    if (!currentPlaylist) {
-      resetPlayer();
-      return;
-    }
-
-    const song = currentPlaylist.songs[currentSongIndex];
-
-    // Update UI
-    songTitleEl.textContent = song.title;
-    playlistNameEl.textContent = `From: ${currentPlaylist.name}`;
-    playBtn.innerHTML = "⏸";
-    isPlaying = true;
-
-    // In a real application, you would actually play the audio file here
-    console.log(
-      `Playing: ${song.title} (value: ${song.value}) from ${currentPlaylist.name}`
-    );
-
-    // Simulate song ending after a few seconds (for demonstration purposes)
-    // In a real app, you'd listen for the 'ended' event on an audio element
-    setTimeout(() => {
-      if (isPlaying) {
-        playNext();
-      }
-    }, 5000);
-  }
-
-  // Function to reset player when nothing is playing
-  function resetPlayer() {
-    songTitleEl.textContent = "Nothing is playing right now";
-    playlistNameEl.textContent = "";
-    playBtn.innerHTML = "▶";
-    isPlaying = false;
-
-    // Disable controls when no playlist is selected
-    prevBtn.disabled = true;
-    playBtn.disabled = true;
-    nextBtn.disabled = true;
-    loopBtn.disabled = true;
-    loopBtn.classList.remove("active");
-    isLooping = false;
-  }
-
-  // Function to toggle play/pause
-  function togglePlay() {
-    if (!currentPlaylist) return;
-
-    isPlaying = !isPlaying;
-    playBtn.innerHTML = isPlaying ? "⏸" : "▶";
-
-    if (isPlaying) {
-      // Resume playing
-      console.log(`Resuming: ${currentPlaylist.songs[currentSongIndex].title}`);
-    } else {
-      // Pause playing
-      console.log(`Pausing: ${currentPlaylist.songs[currentSongIndex].title}`);
-    }
-  }
-
-  // Function to play previous song
-  function playPrevious() {
-    if (!currentPlaylist) return;
-
-    currentSongIndex--;
-    if (currentSongIndex < 0) {
-      currentSongIndex = currentPlaylist.songs.length - 1;
-    }
-
-    playSong();
-  }
-
-  // Function to play next song
-  function playNext() {
-    if (!currentPlaylist) return;
-
-    currentSongIndex++;
-    if (currentSongIndex >= currentPlaylist.songs.length) {
-      // If looping is enabled, start from the beginning
-      // Otherwise, only start from beginning if we're at the end of the playlist
-      if (isLooping) {
-        currentSongIndex = 0;
-        playSong();
-      } else {
-        // Stop playing when we reach the end of the playlist
-        currentSongIndex = 0;
-        playSong();
-      }
-    } else {
-      playSong();
-    }
-  }
-
-  // Function to adjust volume
-  function adjustVolume() {
-    volume = volumeSlider.value;
-    console.log(`Volume set to: ${volume}%`);
-
-    // In a real application, you would set the volume of an audio element
-  }
-
-  // Function to toggle loop mode for the playlist
-  function toggleLoop() {
-    if (!currentPlaylist) return;
-
-    isLooping = !isLooping;
-
-    if (isLooping) {
-      loopBtn.classList.add("active");
-      console.log(`Playlist loop: ON`);
-    } else {
-      loopBtn.classList.remove("active");
-      console.log(`Playlist loop: OFF`);
-    }
-  }
-});
-
 const playlists = {
-  1: [101, 102, 103, 104],
-  2: [201, 202, 203],
-  3: [301, 302, 303, 304, 305],
-  4: [401, 402],
+  1: [
+    {
+      id: 101,
+      source: "music/winter-warmth/beautiful-piano-music-331537.mp3",
+      title: "Beautiful Piano Music 331537",
+    } /*https://pixabay.com/music/beautiful-plays-just-relax-11157/ */,
+    {
+      id: 102,
+      source: "music/winter-warmth/just-relax-11157.mp3",
+      title: "Just Relax 11157",
+    } /*https://pixabay.com/music/modern-classical-beautiful-piano-music-331537/ */,
+    {
+      id: 103,
+      source: "music/winter-warmth/prelude-piano-music-331538.mp3",
+      title: "Prelude Piano Music 331538",
+    } /* https://pixabay.com/music/modern-classical-prelude-piano-music-331538/ */,
+    {
+      id: 104,
+      source: "music/winter-warmth/daylight-piano-music-292993.mp3",
+      title: "Daylight Piano Music 292993",
+    } /* https://pixabay.com/music/modern-classical-daylight-piano-music-292993/ */,
+    {
+      id: 105,
+      source: "music/winter-warmth/just-relax-11157.mp3",
+      title: "Just Relax 11157",
+    } /*https://pixabay.com/music/modern-classical-beautiful-piano-music-331537/ */,
+    {
+      id: 106,
+      source: "music/winter-warmth/just-relax-11157.mp3",
+      title: "Just Relax 11157",
+    } /*https://pixabay.com/music/modern-classical-beautiful-piano-music-331537/ */,
+    {
+      id: 107,
+      source: "music/winter-warmth/just-relax-11157.mp3",
+      title: "Just Relax 11157",
+    } /*https://pixabay.com/music/modern-classical-beautiful-piano-music-331537/ */,
+  ],
+  2: [
+    { id: 201, source: "path/to/track201.mp3", title: "Track 201" },
+    { id: 202, source: "path/to/track202.mp3", title: "Track 202" },
+    { id: 203, source: "path/to/track203.mp3", title: "Track 203" },
+  ],
+  3: [
+    { id: 301, source: "path/to/track301.mp3", title: "Track 301" },
+    { id: 302, source: "path/to/track302.mp3", title: "Track 302" },
+    { id: 303, source: "path/to/track303.mp3", title: "Track 303" },
+    { id: 304, source: "path/to/track304.mp3", title: "Track 304" },
+    { id: 305, source: "path/to/track305.mp3", title: "Track 305" },
+  ],
+  4: [
+    { id: 401, source: "path/to/track401.mp3", title: "Track 401" },
+    { id: 402, source: "path/to/track402.mp3", title: "Track 402" },
+  ],
+};
+
+// Button icon image sources
+const buttonIcons = {
+  play: "ui/Play Button.png",
+  pause: "ui/Pause Button.png",
+  next: "ui/Skip Button.png",
+  previous: "ui/Previous Button.png",
+  loopOn: "ui/Loop Button.png",
+  loopOff: "ui/Loop disabled Button.png",
+};
+
+// Background image sources for each playlist
+const playlistBackground = {
+  1: "https://cdn.pixabay.com/photo/2023/12/05/15/07/window-8431870_1280.jpg",
+  2: "images/background-playlist2.jpg", // Background for playlist 2
+  3: "images/background-playlist3.jpg", // Background for playlist 3
+  4: "images/background-playlist4.jpg", // Background for playlist 4
 };
 
 // Player state
-let currentPlaying = {
-  playlist: null,
-  track: null,
-  isPlaying: false,
-  currentIndex: -1,
-};
-
-// DOM elements
-const playlistElements = document.querySelectorAll(".playlist");
-const nowPlayingElement = document.getElementById("nowPlaying");
-const trackListElement = document.getElementById("trackList");
-const prevButton = document.getElementById("prevButton");
-const playPauseButton = document.getElementById("playPauseButton");
-const nextButton = document.getElementById("nextButton");
-const volumeSlider = document.getElementById("volumeSlider");
-const loopButton = document.getElementById("loopButton");
-
-// Initialize loop state
+let currentPlaylist = 0;
+let currentTrackNumber = -1;
+let isPlaying = false;
 let isLooping = false;
+let audioElement = new Audio();
 
-// Add event listeners to playlists
-playlistElements.forEach((playlist) => {
-  playlist.addEventListener("click", () => {
-    const playlistId = parseInt(playlist.dataset.playlist);
-    loadPlaylist(playlistId);
-  });
+let hideStatus = "visible";
+
+// Set up audio element to play next track when current track ends
+audioElement.addEventListener("ended", function () {
+  playNextTrack();
 });
 
-// Load a playlist and start playing
-function loadPlaylist(playlistId) {
-  // Reset previous active playlist
-  playlistElements.forEach((pl) => pl.classList.remove("active"));
+// Get HTML elements
+const nowPlaying = document.getElementById("nowPlaying");
+const trackListNumber = document.getElementById("trackList");
+const playPauseButton = document.getElementById("play-pause-button");
+const loopButton = document.getElementById("loop-button");
+const previousButton = document.getElementById("previous-button");
+const nextButton = document.getElementById("skip-button");
+const hideButton = document.getElementById("hide-button");
+const volumeSlider = document.getElementById("volume-slider");
+const supportText = document.getElementById("supportText");
+const playerBackground = document.getElementById("player-background");
 
-  // Set new playlist as active
-  document
-    .querySelector(`.playlist[data-playlist="${playlistId}"]`)
-    .classList.add("active");
+// Get image elements
+const playPauseImg = document.getElementById("play-pause-button");
+const loopImg = document.getElementById("loop-button");
+const prevImg = document.getElementById("previous-button");
+const nextImg = document.getElementById("skip-button");
 
-  // Update current playing
-  currentPlaying.playlist = playlistId;
-  currentPlaying.currentIndex = 0;
-  currentPlaying.track = playlists[playlistId][0];
-  currentPlaying.isPlaying = true;
+// Set up volume control
+volumeSlider.addEventListener("input", function (event) {
+  audioElement.volume = event.target.value / 100;
+  console.log("Volume: " + event.target.value + "%");
+});
 
-  // Update UI
-  updateNowPlaying();
-  updatePlayPauseButton();
-  loadTrackList();
-
-  // Simulate starting playback
-  console.log(
-    `Started playing track ${currentPlaying.track} from playlist ${currentPlaying.playlist}`
-  );
-}
-
-// Update the now playing display
-function updateNowPlaying() {
-  if (currentPlaying.playlist === null) {
-    nowPlayingElement.textContent = "Nothing is playing right now";
-  } else {
-    nowPlayingElement.textContent = `Playing: Track ${currentPlaying.track} from Playlist ${currentPlaying.playlist}`;
-  }
-}
-
-// Load and display the track list for current playlist
-function loadTrackList() {
-  // Clear existing tracks
-  trackListElement.innerHTML = "";
-
-  if (currentPlaying.playlist === null) return;
-
-  // Add tracks from current playlist
-  playlists[currentPlaying.playlist].forEach((track, index) => {
-    const li = document.createElement("li");
-    li.className = "track";
-    if (index === currentPlaying.currentIndex) {
-      li.classList.add("playing");
-    }
-    li.textContent = `Track ${track}`;
-    li.addEventListener("click", () => {
-      playTrack(index);
-    });
-    trackListElement.appendChild(li);
+// Set up playlist buttons
+const playlistButtons = document.querySelectorAll(".playlist");
+console.log(playlistButtons);
+for (let i = 0; i < playlistButtons.length; i++) {
+  const playlistButton = playlistButtons[i];
+  playlistButton.addEventListener("click", function () {
+    const playlistNumber = +this.dataset.playlist;
+    selectPlaylist(playlistNumber);
+    document
+      .getElementById("player-anchor")
+      .scrollIntoView({ behavior: "smooth" });
   });
+}
+
+// Set up control buttons
+previousButton.addEventListener("click", function () {
+  playPreviousTrack();
+});
+
+playPauseButton.addEventListener("click", function () {
+  togglePlayPause();
+});
+
+nextButton.addEventListener("click", function () {
+  playNextTrack();
+});
+
+loopButton.addEventListener("click", function () {
+  toggleLoop();
+});
+
+hideButton.addEventListener("click", function () {
+  toggleHide();
+});
+
+// Select and start playing a playlist
+function selectPlaylist(playlistNumber) {
+  // Check if we're already playing this playlist
+  if (playlistNumber === currentPlaylist && isPlaying) {
+    return;
+  }
+
+  // Update UI to show selected playlist
+  for (let i = 0; i < playlistButtons.length; i++) {
+    const button = playlistButtons[i];
+    const buttonPlaylistNumber = +button.dataset.playlist;
+
+    if (buttonPlaylistNumber === playlistNumber) {
+      button.classList.add("active");
+    } else {
+      button.classList.remove("active");
+    }
+  }
+
+  // Set the playlist and start with first track
+  currentPlaylist = playlistNumber;
+  currentTrackNumber = 0;
+  isPlaying = true;
+
+  updatePlayerDisplay();
+  playCurrentTrack();
+}
+
+// Play the currently selected track
+function playCurrentTrack() {
+  if (currentPlaylist === 0 || currentTrackNumber === -1) {
+    return; // No playlist or track selected
+  }
+
+  // Get the track object
+  const track = playlists[currentPlaylist][currentTrackNumber];
+
+  // Set the audio source and play
+  audioElement.src = track.source;
+  audioElement.play();
+}
+
+// Update all visual elements
+function updatePlayerDisplay() {
+  // Update background
+  if (currentPlaylist === 0) {
+    playerBackground.style.backgroundImage = "none";
+    nowPlaying.textContent = "Nothing is playing right now";
+    supportText.style.visibility = "visible";
+  } else {
+    if (hideStatus == "visible") {
+      playerBackground.style.backgroundImage = `url('${playlistBackground[currentPlaylist]}')`;
+    }
+    supportText.style.visibility = "hidden";
+
+    // Show current track info
+    if (currentTrackNumber !== -1) {
+      const track = playlists[currentPlaylist][currentTrackNumber];
+      nowPlaying.innerHTML = ` Now playing: ${track.title} `;
+    }
+  }
+
+  updateButtonImages();
+
+  // Update the track listing
+  updateTrackList();
+}
+
+// Update the list of tracks shown
+function updateTrackList() {
+  // Clear track list
+  trackListNumber.innerHTML = "";
+
+  if (currentPlaylist === 0) {
+    return;
+  }
+
+  // Add each track to the list
+  const tracks = playlists[currentPlaylist];
+  for (let i = 0; i < tracks.length; i++) {
+    const trackElement = document.createElement("li");
+    trackElement.className = "track";
+
+    if (i === currentTrackNumber) {
+      trackElement.classList.add("playing");
+    } else {
+      // Ensure no playing class if not the current track
+      trackElement.classList.remove("playing");
+    }
+
+    trackElement.textContent = tracks[i].title;
+
+    // Add click handler
+    trackElement.addEventListener("click", function () {
+      playTrack(i);
+    });
+
+    trackListNumber.appendChild(trackElement);
+  }
 }
 
 // Play a specific track
 function playTrack(index) {
-  if (currentPlaying.playlist === null) return;
-
-  currentPlaying.currentIndex = index;
-  currentPlaying.track = playlists[currentPlaying.playlist][index];
-  currentPlaying.isPlaying = true;
-
-  updateNowPlaying();
-  updatePlayPauseButton();
-  highlightCurrentTrack();
-
-  console.log(`Playing track ${currentPlaying.track}`);
-
-  // Simulate track duration (5 seconds) and auto-play next
-  if (currentPlaying.isPlaying) {
-    setTimeout(() => {
-      if (currentPlaying.isPlaying) {
-        playNextTrack();
-      }
-    }, 5000);
-  }
-}
-
-// Highlight the currently playing track
-function highlightCurrentTrack() {
-  const tracks = document.querySelectorAll(".track");
-  tracks.forEach((track, index) => {
-    if (index === currentPlaying.currentIndex) {
-      track.classList.add("playing");
-    } else {
-      track.classList.remove("playing");
-    }
-  });
-}
-
-// Play the previous track
-function playPrevTrack() {
-  if (currentPlaying.playlist === null) return;
-
-  currentPlaying.currentIndex--;
-  if (currentPlaying.currentIndex < 0) {
-    if (isLooping) {
-      // If looping, go to the last track
-      currentPlaying.currentIndex =
-        playlists[currentPlaying.playlist].length - 1;
-    } else {
-      currentPlaying.currentIndex = 0;
-      return;
-    }
+  if (currentPlaylist === 0) {
+    return;
   }
 
-  currentPlaying.track =
-    playlists[currentPlaying.playlist][currentPlaying.currentIndex];
-  updateNowPlaying();
-  highlightCurrentTrack();
+  // Pause current audio if playing
+  if (isPlaying) {
+    audioElement.pause();
+  }
 
-  console.log(`Playing previous track: ${currentPlaying.track}`);
+  currentTrackNumber = index;
+  isPlaying = true;
+
+  updatePlayerDisplay();
+  playCurrentTrack();
 }
 
 // Play the next track
 function playNextTrack() {
-  if (currentPlaying.playlist === null) return;
-
-  currentPlaying.currentIndex++;
-  if (
-    currentPlaying.currentIndex >= playlists[currentPlaying.playlist].length
-  ) {
-    if (isLooping) {
-      // If looping, go back to the first track
-      currentPlaying.currentIndex = 0;
-    } else {
-      currentPlaying.currentIndex =
-        playlists[currentPlaying.playlist].length - 1;
-      currentPlaying.isPlaying = false;
-      updatePlayPauseButton();
-      return;
-    }
+  if (currentPlaylist === 0) {
+    return;
   }
 
-  currentPlaying.track =
-    playlists[currentPlaying.playlist][currentPlaying.currentIndex];
-  updateNowPlaying();
-  highlightCurrentTrack();
+  // Check if we're at the end of the playlist
+  const playlistLength = playlists[currentPlaylist].length;
 
-  console.log(`Playing next track: ${currentPlaying.track}`);
+  if (currentTrackNumber >= playlistLength - 1) {
+    // At the last track
+    if (isLooping) {
+      // Loop back to first track
+      currentTrackNumber = 0;
+    } else {
+      // Stop playing at the end if not looping
+      isPlaying = false;
+      currentPlaylist = 0;
+      audioElement.pause();
+      updatePlayerDisplay();
+      return;
+    }
+  } else {
+    // Move to next track
+    currentTrackNumber++;
+  }
 
-  // Simulate track duration and auto-play next if still playing
-  if (currentPlaying.isPlaying) {
-    setTimeout(() => {
-      if (currentPlaying.isPlaying) {
-        playNextTrack();
-      }
-    }, 5000);
+  updatePlayerDisplay();
+  if (isPlaying) {
+    playCurrentTrack();
+  }
+}
+
+// Play the previous track
+function playPreviousTrack() {
+  if (currentPlaylist === 0) {
+    return;
+  }
+
+  // Check if we're at the beginning of the playlist
+  if (currentTrackNumber <= 0) {
+    if (isLooping) {
+      // Jump to last track if looping
+      currentTrackNumber = playlists[currentPlaylist].length - 1;
+    } else {
+      // Stay on first track
+      currentTrackNumber = 0;
+    }
+  } else {
+    // Move to previous track
+    currentTrackNumber--;
+  }
+
+  updatePlayerDisplay();
+  if (isPlaying) {
+    playCurrentTrack();
   }
 }
 
 // Toggle play/pause
 function togglePlayPause() {
-  if (currentPlaying.playlist === null) return;
-
-  currentPlaying.isPlaying = !currentPlaying.isPlaying;
-  updatePlayPauseButton();
-
-  if (currentPlaying.isPlaying) {
-    console.log(`Resumed playing track ${currentPlaying.track}`);
-    // Simulate track duration and auto-play next
-    setTimeout(() => {
-      if (currentPlaying.isPlaying) {
-        playNextTrack();
-      }
-    }, 5000);
-  } else {
-    console.log(`Paused track ${currentPlaying.track}`);
+  if (currentPlaylist === 0) {
+    return;
   }
-}
 
-// Update the play/pause button icon
-function updatePlayPauseButton() {
-  playPauseButton.textContent = currentPlaying.isPlaying ? "⏸" : "▶";
+  if (isPlaying) {
+    // Pause the audio
+    isPlaying = false;
+    audioElement.pause();
+  } else {
+    // Resume playing from where it was paused
+    isPlaying = true;
+    audioElement.play();
+  }
+
+  updatePlayerDisplay();
 }
 
 // Toggle loop mode
 function toggleLoop() {
-  isLooping = !isLooping;
-  loopButton.classList.toggle("active", isLooping);
-  console.log(`Loop mode: ${isLooping ? "ON" : "OFF"}`);
+  if (isLooping) {
+    isLooping = false;
+    loopButton.classList.remove("active");
+  } else {
+    isLooping = true;
+    loopButton.classList.add("active");
+  }
+
+  updatePlayerDisplay();
 }
 
-// Set up event listeners for controls
-prevButton.addEventListener("click", playPrevTrack);
-playPauseButton.addEventListener("click", togglePlayPause);
-nextButton.addEventListener("click", playNextTrack);
-loopButton.addEventListener("click", toggleLoop);
+function updateButtonImages() {
+  // Update play/pause button image
+  if (isPlaying) {
+    playPauseImg.src = "ui/Pause Button.png";
+  } else {
+    playPauseImg.src = "ui/Play Button.png";
+  }
 
-// Volume control
-volumeSlider.addEventListener("input", () => {
-  const volume = volumeSlider.value;
-  console.log(`Volume set to: ${volume}%`);
-});
+  // Update loop button image
+  if (isLooping) {
+    loopButton.src = "ui/Loop Button.png";
+  } else {
+    loopButton.src = "ui/Loop disabled Button.png";
+  }
+}
+
+function toggleHide() {
+  if (currentPlaylist === 0) return;
+  currentstate = playerBackground.style.backgroundImage;
+  if (currentstate == "none") {
+    playerBackground.style.backgroundImage = `url('${playlistBackground[currentPlaylist]}')`;
+    hideButton.src = "ui/Visible Button.png";
+    hideStatus = "visible";
+  } else {
+    playerBackground.style.backgroundImage = `none`;
+    hideButton.src = "ui/Invisible Button.png";
+    hideStatus = "hidden";
+  }
+}

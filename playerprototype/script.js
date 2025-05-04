@@ -1,235 +1,365 @@
-// Define playlists with their tracks
+// STEP 1: Define our music tracks and playlists
+// ====================================
+
+// This is where you add your own music files
+const tracks = {
+  // Format: trackID: {title: "Track Name", source: "path/to/audio.mp3"}
+  101: { title: "Happy Song", source: "audio/just-relax-11157.mp3" },
+  102: { title: "Sad Song", source: "music/track102.mp3" },
+  103: { title: "Dance Song", source: "music/track103.mp3" },
+  104: { title: "Slow Song", source: "music/track104.mp3" },
+
+  201: { title: "Rock Song", source: "music/track201.mp3" },
+  202: { title: "Pop Song", source: "music/track202.mp3" },
+  203: { title: "Jazz Song", source: "music/track203.mp3" },
+
+  301: { title: "Country Song", source: "music/track301.mp3" },
+  302: { title: "Hip Hop Song", source: "music/track302.mp3" },
+  303: { title: "Classical Song", source: "music/track303.mp3" },
+  304: { title: "Electronic Song", source: "music/track304.mp3" },
+  305: { title: "Reggae Song", source: "music/track305.mp3" },
+
+  401: { title: "Blues Song", source: "music/track401.mp3" },
+  402: { title: "Folk Song", source: "music/track402.mp3" },
+};
+
+// Group tracks into playlists
 const playlists = {
-  1: [101, 102, 103, 104],
-  2: [201, 202, 203],
-  3: [301, 302, 303, 304, 305],
-  4: [401, 402],
+  1: [101, 102, 103, 104], // Playlist 1: various songs
+  2: [201, 202, 203], // Playlist 2: more songs
+  3: [301, 302, 303, 304, 305], // Playlist 3: even more songs
+  4: [401, 402], // Playlist 4: final songs
 };
 
-// Player state
-let currentPlaying = {
-  playlist: null,
-  track: null,
-  isPlaying: false,
-  currentIndex: -1,
+// Colors for each playlist
+const playlistColors = {
+  1: "linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%)", // Pink/Peach
+  2: "linear-gradient(135deg, #a6c0fe 0%, #f68084 100%)", // Blue/Pink
+  3: "linear-gradient(135deg, #fbc2eb 0%, #a6c1ee 100%)", // Purple/Blue
+  4: "linear-gradient(135deg, #84fab0 0%, #8fd3f4 100%)", // Green/Blue
 };
 
-// DOM elements
-const playlistElements = document.querySelectorAll(".playlist");
-const nowPlayingElement = document.getElementById("nowPlaying");
-const trackListElement = document.getElementById("trackList");
-const prevButton = document.getElementById("prevButton");
-const playPauseButton = document.getElementById("playPauseButton");
-const nextButton = document.getElementById("nextButton");
-const volumeSlider = document.getElementById("volumeSlider");
-const loopButton = document.getElementById("loopButton");
+// STEP 2: Set up variables to track what's playing
+// ===============================================
 
-// Initialize loop state
+// Which playlist is selected (0 = none)
+let currentPlaylist = 0;
+
+// Which track number in the playlist (0 = first track)
+let currentTrack = -1;
+
+// Is music playing right now?
+let isPlaying = false;
+
+// Should we repeat the playlist when it ends?
 let isLooping = false;
 
-// Add event listeners to playlists
-playlistElements.forEach((playlist) => {
-  playlist.addEventListener("click", () => {
-    const playlistId = parseInt(playlist.dataset.playlist);
-    loadPlaylist(playlistId);
-  });
+// Create an audio player
+const audioElement = new Audio();
+
+// STEP 3: Connect to HTML elements
+// ===============================
+
+// Get all the buttons and displays from the HTML
+const nowPlayingText = document.getElementById("nowPlaying");
+const trackList = document.getElementById("trackList");
+const playButton = document.getElementById("playPauseButton");
+const loopButton = document.getElementById("loopButton");
+const prevButton = document.getElementById("prevButton");
+const nextButton = document.getElementById("nextButton");
+const volumeControl = document.getElementById("volumeSlider");
+const playlistButtons = document.querySelectorAll(".playlist");
+
+// STEP 4: Set up what happens when a track ends
+// ===========================================
+
+// When a song finishes playing, play the next one
+audioElement.addEventListener("ended", function () {
+  playNextSong();
 });
 
-// Load a playlist and start playing
-function loadPlaylist(playlistId) {
-  // Reset previous active playlist
-  playlistElements.forEach((pl) => pl.classList.remove("active"));
+// STEP 5: Add button click handlers
+// ===============================
 
-  // Set new playlist as active
-  document
-    .querySelector(`.playlist[data-playlist="${playlistId}"]`)
-    .classList.add("active");
+// Loop through each playlist button and add a click handler
+for (let i = 0; i < playlistButtons.length; i++) {
+  const button = playlistButtons[i];
 
-  // Update current playing
-  currentPlaying.playlist = playlistId;
-  currentPlaying.currentIndex = 0;
-  currentPlaying.track = playlists[playlistId][0];
-  currentPlaying.isPlaying = true;
-
-  // Update UI
-  updateNowPlaying();
-  updatePlayPauseButton();
-  loadTrackList();
-
-  // Simulate starting playback
-  console.log(
-    `Started playing track ${currentPlaying.track} from playlist ${currentPlaying.playlist}`
-  );
+  // When a playlist button is clicked
+  button.addEventListener("click", function () {
+    // Get playlist number from the button's data-playlist attribute
+    const playlistNumber = +this.dataset.playlist;
+    choosePlaylist(playlistNumber);
+  });
 }
 
-// Update the now playing display
-function updateNowPlaying() {
-  if (currentPlaying.playlist === null) {
-    nowPlayingElement.textContent = "Nothing is playing right now";
-  } else {
-    nowPlayingElement.textContent = `Playing: Track ${currentPlaying.track} from Playlist ${currentPlaying.playlist}`;
+// What happens when you click the Previous button
+prevButton.addEventListener("click", function () {
+  playPreviousSong();
+});
+
+// What happens when you click the Play/Pause button
+playButton.addEventListener("click", function () {
+  togglePlayPause();
+});
+
+// What happens when you click the Next button
+nextButton.addEventListener("click", function () {
+  playNextSong();
+});
+
+// What happens when you click the Loop button
+loopButton.addEventListener("click", function () {
+  toggleLoopMode();
+});
+
+// What happens when you move the volume slider
+volumeControl.addEventListener("input", function () {
+  audioElement.volume = this.value / 100;
+});
+
+// STEP 6: Define all our functions
+// ==============================
+
+// Choose a playlist and start playing it
+function choosePlaylist(playlistNumber) {
+  // If this playlist is already playing, do nothing
+  if (playlistNumber === currentPlaylist && isPlaying) {
+    return;
+  }
+
+  // Update which playlist is selected
+  currentPlaylist = playlistNumber;
+  currentTrack = 0; // Start with the first song
+  isPlaying = true; // Start playing
+
+  // Update buttons to show which playlist is active
+  highlightActivePlaylist();
+
+  // Update the display and start playing
+  updateDisplay();
+  playSong();
+}
+
+// Highlight the active playlist button
+function highlightActivePlaylist() {
+  // Go through each playlist button
+  for (let i = 0; i < playlistButtons.length; i++) {
+    const button = playlistButtons[i];
+    const buttonPlaylistNumber = +button.dataset.playlist;
+
+    // If this is the active playlist, highlight it
+    if (buttonPlaylistNumber === currentPlaylist) {
+      button.classList.add("active");
+    } else {
+      button.classList.remove("active");
+    }
   }
 }
 
-// Load and display the track list for current playlist
-function loadTrackList() {
-  // Clear existing tracks
-  trackListElement.innerHTML = "";
+// Update all the visual elements
+function updateDisplay() {
+  // If no playlist is selected
+  if (currentPlaylist === 0) {
+    // Use default background
+    document.body.style.backgroundImage = "none";
+    document.body.style.backgroundColor = "#f5f5f5";
+    nowPlayingText.textContent = "Nothing is playing right now";
+  } else {
+    // Use playlist's background color
+    document.body.style.backgroundImage = playlistColors[currentPlaylist];
 
-  if (currentPlaying.playlist === null) return;
+    // Show what's playing if a track is selected
+    if (currentTrack >= 0) {
+      // Get the track ID and info
+      const trackId = playlists[currentPlaylist][currentTrack];
+      const trackInfo = tracks[trackId];
 
-  // Add tracks from current playlist
-  playlists[currentPlaying.playlist].forEach((track, index) => {
-    const li = document.createElement("li");
-    li.className = "track";
-    if (index === currentPlaying.currentIndex) {
-      li.classList.add("playing");
+      // Update the "Now Playing" text
+      nowPlayingText.textContent =
+        "Playing: " + trackInfo.title + " (Playlist " + currentPlaylist + ")";
     }
-    li.textContent = `Track ${track}`;
-    li.addEventListener("click", () => {
-      playTrack(index);
+  }
+
+  // Update play/pause button icon
+  playButton.textContent = isPlaying ? "⏸" : "▶";
+
+  // Update loop button
+  loopButton.textContent = isLooping ? "🔁" : "🔂";
+
+  // Update the track list
+  updateTrackList();
+}
+
+// Update the list of tracks shown for the current playlist
+function updateTrackList() {
+  // Clear the current list
+  trackList.innerHTML = "";
+
+  // If no playlist is selected, leave the list empty
+  if (currentPlaylist === 0) {
+    return;
+  }
+
+  // Get the list of track IDs for this playlist
+  const playlistTracks = playlists[currentPlaylist];
+
+  // Add each track to the list
+  for (let i = 0; i < playlistTracks.length; i++) {
+    // Get the track ID and info
+    const trackId = playlistTracks[i];
+    const trackInfo = tracks[trackId];
+
+    // Create a list item for this track
+    const trackItem = document.createElement("li");
+    trackItem.className = "track";
+
+    // If this is the current track, highlight it
+    if (i === currentTrack) {
+      trackItem.classList.add("playing");
+    }
+
+    // Set the track title
+    trackItem.textContent = trackInfo.title;
+
+    // Add click handler to play this track when clicked
+    trackItem.addEventListener("click", function () {
+      chooseSong(i);
     });
-    trackListElement.appendChild(li);
+
+    // Add this track to the list
+    trackList.appendChild(trackItem);
+  }
+}
+
+// Play the current song
+function playSong() {
+  // Do nothing if no playlist or track is selected
+  if (currentPlaylist === 0 || currentTrack < 0) {
+    return;
+  }
+
+  // Get the track ID and info
+  const trackId = playlists[currentPlaylist][currentTrack];
+  const trackInfo = tracks[trackId];
+
+  // Set the audio source
+  audioElement.src = trackInfo.source;
+
+  // Try to play the audio
+  audioElement.play().catch(function (error) {
+    console.log("Couldn't play audio:", error);
+    isPlaying = false;
+    updateDisplay();
   });
 }
 
-// Play a specific track
-function playTrack(index) {
-  if (currentPlaying.playlist === null) return;
+// Choose and play a specific song
+function chooseSong(trackNumber) {
+  // Stop current song if playing
+  audioElement.pause();
 
-  currentPlaying.currentIndex = index;
-  currentPlaying.track = playlists[currentPlaying.playlist][index];
-  currentPlaying.isPlaying = true;
+  // Update which track is playing
+  currentTrack = trackNumber;
+  isPlaying = true;
 
-  updateNowPlaying();
-  updatePlayPauseButton();
-  highlightCurrentTrack();
+  // Update display and play
+  updateDisplay();
+  playSong();
+}
 
-  console.log(`Playing track ${currentPlaying.track}`);
-
-  // Simulate track duration (5 seconds) and auto-play next
-  if (currentPlaying.isPlaying) {
-    setTimeout(() => {
-      if (currentPlaying.isPlaying) {
-        playNextTrack();
-      }
-    }, 5000);
+// Play the next song
+function playNextSong() {
+  // Do nothing if no playlist is selected
+  if (currentPlaylist === 0) {
+    return;
   }
-}
 
-// Highlight the currently playing track
-function highlightCurrentTrack() {
-  const tracks = document.querySelectorAll(".track");
-  tracks.forEach((track, index) => {
-    if (index === currentPlaying.currentIndex) {
-      track.classList.add("playing");
-    } else {
-      track.classList.remove("playing");
-    }
-  });
-}
+  // Get the number of tracks in this playlist
+  const numberOfTracks = playlists[currentPlaylist].length;
 
-// Play the previous track
-function playPrevTrack() {
-  if (currentPlaying.playlist === null) return;
+  // Check if we're at the end of the playlist
+  if (currentTrack >= numberOfTracks - 1) {
+    // This is the last track
 
-  currentPlaying.currentIndex--;
-  if (currentPlaying.currentIndex < 0) {
     if (isLooping) {
-      // If looping, go to the last track
-      currentPlaying.currentIndex =
-        playlists[currentPlaying.playlist].length - 1;
+      // Loop back to first track
+      currentTrack = 0;
+      updateDisplay();
+      playSong();
     } else {
-      currentPlaying.currentIndex = 0;
-      return;
+      // Stop playing if we're not looping
+      isPlaying = false;
+      updateDisplay();
     }
-  }
-
-  currentPlaying.track =
-    playlists[currentPlaying.playlist][currentPlaying.currentIndex];
-  updateNowPlaying();
-  highlightCurrentTrack();
-
-  console.log(`Playing previous track: ${currentPlaying.track}`);
-}
-
-// Play the next track
-function playNextTrack() {
-  if (currentPlaying.playlist === null) return;
-
-  currentPlaying.currentIndex++;
-  if (
-    currentPlaying.currentIndex >= playlists[currentPlaying.playlist].length
-  ) {
-    if (isLooping) {
-      // If looping, go back to the first track
-      currentPlaying.currentIndex = 0;
-    } else {
-      currentPlaying.currentIndex =
-        playlists[currentPlaying.playlist].length - 1;
-      currentPlaying.isPlaying = false;
-      updatePlayPauseButton();
-      return;
-    }
-  }
-
-  currentPlaying.track =
-    playlists[currentPlaying.playlist][currentPlaying.currentIndex];
-  updateNowPlaying();
-  highlightCurrentTrack();
-
-  console.log(`Playing next track: ${currentPlaying.track}`);
-
-  // Simulate track duration and auto-play next if still playing
-  if (currentPlaying.isPlaying) {
-    setTimeout(() => {
-      if (currentPlaying.isPlaying) {
-        playNextTrack();
-      }
-    }, 5000);
-  }
-}
-
-// Toggle play/pause
-function togglePlayPause() {
-  if (currentPlaying.playlist === null) return;
-
-  currentPlaying.isPlaying = !currentPlaying.isPlaying;
-  updatePlayPauseButton();
-
-  if (currentPlaying.isPlaying) {
-    console.log(`Resumed playing track ${currentPlaying.track}`);
-    // Simulate track duration and auto-play next
-    setTimeout(() => {
-      if (currentPlaying.isPlaying) {
-        playNextTrack();
-      }
-    }, 5000);
   } else {
-    console.log(`Paused track ${currentPlaying.track}`);
+    // Move to the next track
+    currentTrack = currentTrack + 1;
+    updateDisplay();
+    playSong();
   }
 }
 
-// Update the play/pause button icon
-function updatePlayPauseButton() {
-  playPauseButton.textContent = currentPlaying.isPlaying ? "⏸" : "▶";
+// Play the previous song
+function playPreviousSong() {
+  // Do nothing if no playlist is selected
+  if (currentPlaylist === 0) {
+    return;
+  }
+
+  // Check if we're at the first track
+  if (currentTrack <= 0) {
+    if (isLooping) {
+      // If looping, wrap around to the last track
+      const numberOfTracks = playlists[currentPlaylist].length;
+      currentTrack = numberOfTracks - 1;
+    } else {
+      // If not looping, stay on the first track
+      currentTrack = 0;
+    }
+  } else {
+    // Move to the previous track
+    currentTrack = currentTrack - 1;
+  }
+
+  // Update and play
+  updateDisplay();
+  playSong();
 }
 
-// Toggle loop mode
-function toggleLoop() {
+// Toggle between play and pause
+function togglePlayPause() {
+  // Do nothing if no playlist is selected
+  if (currentPlaylist === 0) {
+    return;
+  }
+
+  if (isPlaying) {
+    // Pause the music
+    isPlaying = false;
+    audioElement.pause();
+  } else {
+    // Resume playing
+    isPlaying = true;
+    audioElement.play();
+  }
+
+  // Update the display
+  updateDisplay();
+}
+
+// Toggle loop mode on/off
+function toggleLoopMode() {
+  // Flip the looping status
   isLooping = !isLooping;
-  loopButton.classList.toggle("active", isLooping);
-  console.log(`Loop mode: ${isLooping ? "ON" : "OFF"}`);
+
+  // Update loop button styling
+  if (isLooping) {
+    loopButton.classList.add("active");
+  } else {
+    loopButton.classList.remove("active");
+  }
+
+  // Update the display
+  updateDisplay();
 }
-
-// Set up event listeners for controls
-prevButton.addEventListener("click", playPrevTrack);
-playPauseButton.addEventListener("click", togglePlayPause);
-nextButton.addEventListener("click", playNextTrack);
-loopButton.addEventListener("click", toggleLoop);
-
-// Volume control
-volumeSlider.addEventListener("input", () => {
-  const volume = volumeSlider.value;
-  console.log(`Volume set to: ${volume}%`);
-});
