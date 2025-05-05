@@ -3,7 +3,9 @@
   display: none;
   overflow: hidden;
 }
-
+/*SOOOO MY ORIGINAL CONCEPT for this website was something like "Acting as a window showing a scene while you study". To differenciate my website from other study music websites, I wanted to create a concept which by having the website with an image of scenery showing through a windowon the screen, users can feel somewhat more engaged with the atmosphere, reducing stress and enhancing productivity. */
+/* That's why I wanted the scrollbar removed to have the screen not disturbed as much as possible, and I've managed to hide it off the screen assisted by W3 School and https://stackoverflow.com/questions/16670931/hide-scroll-bar-but-while-still-being-able-to-scroll*/
+/*This uses the maximum capacity of the screen size and allows the website to be more convincing as a window. */
 /* Gradient Background assisted with https://www.youtube.com/watch?v=SDf16FceF60&ab_channel=HeyTechnigo */
 body {
   margin: 0;
@@ -25,3 +27,6 @@ button {
   border-style: hidden;
   cursor: pointer;
 }
+
+/*I could've just used one stylesheet for both index and menu but I already made a separate css file for the menu so it is what it is I guess..? */
+/*Additionally, some elements from both files overlap (like button and body, which is pretty much all there is) and I didn't want to get too complicated with labelling.*/

@@ -3,11 +3,20 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Jinseo Park Assignment 2</title>
+    <title>Mood Player - Study Space</title>
     <link rel="stylesheet" href="menustyle.css" />
     <link rel="reset" href="reset.css" />
     <script src="script.js" defer></script>
-  </head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cascadia+Code:ital,wght@0,200..700;1,200..700&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+
+<!-- I've created a separate html for the main function because I wanted to have the index as some kind of opening page. As users will visit this website with a plan to study, click here to get started will act as a trigger for them to be emotionally prepared to study.-->
+ <!-- My Original plan was to have a separate html page for each section, including main menu, music player, music playlist, explore page, etc. However, that would've been too complicated and time-consuming to make and it adds unnecessary inconvenience. Most importantly, I wanted to have the nice, smooth scrolling travel experience between the music player and playlist selector and having a separate page would be hard to accomplish that. -->
+</head>
   <body>
     <p id="player-anchor">player</p>
     <div id="player-background">
@@ -15,9 +24,10 @@
         <div class="hide-background">
           <img src="ui/Visible Button.png" alt="" id="hide-button">
         </div>
+        <!-- This button hides the background image to empty out the screen  for the users who prefer having no screen when studying.-->
         <div class="player">
           <div class="title-section">
-            <p class="now-playing"><h1 id="nowPlaying">Nothing is playing right now</h1></p>
+            <h1 id="now-playing">Nothing is playing right now</h1>
             <p id="supportText">Select a playlist to start your study session</p>
           </div>
           <div class="controls">
@@ -33,14 +43,16 @@
             <button class="ui">
               <img src="ui/Loop Button.png" alt="Loop Button" id="loop-button">
             </button>
+            <!-- Volume fading feature assisted by https://music.arts.uci.edu/dobrian/webaudio/tutorials/JavaScript/volumefaderjs.html#:~:text=The%20HTML%20element%20with,to%201%20(full%20volume). -->
+            <!-- I decided that a music player website for studying especially required a volume controller otherwise it will cause interference for the user's study for being too loud or too quite.-->
+            <!--- Within the main divisions, I've further divided them into smaller divisions to add unique styles and layout changes to each grouped elements. -->
             <div class="volume">
               <input
                 type="range"
-                min="1"
+                id="volume-slider"
+                min="0"
                 max="100"
-                value="100"
-                class="scroll"
-              id="volume-slider">
+                value="100">
             </div>
           </div>
         </div>
@@ -49,10 +61,16 @@
             <button class="buttons" id="down-button">
               <img src="ui/Arrow Down.png" alt="Down Button"/>
             </button>
-          </a>
+            <!-- for the music player controls, I have decided to add previous, play/pause, skip and loop button.-->
+             <!-- While the primary goal of the website is to assist studying, it is also a music player and if the user likes a certain track, without prev/skip button, they will have to re-listen to all previous tracks before they can listen to that track again.-->
+            <!-- Looping is to enable long studies without needing to pause to interact with the website and re-click on the playlist again. However, I decided that looping a single track may be unnecessary.(if they plan to listen to single track only, they would not be on this website in the first place anyways)-->
+            </a>
         </div>
       </div>
     </div>
+
+    <!--This separates the webpage into two main divisions, the player and the menu. -->
+    <!--The reason why I wanted to lock the screen for each section was to distinguish them as separate functions and the player's background image overlapping with the black background of the menu would look awkward  -->
 
     <div class="menu">
       <p id="menu-anchor">menu</p>
@@ -60,7 +78,7 @@
         <section class="each-section left-section">
           <fieldset>
             <legend>Current Playlist</legend>
-              <ul class="track-list" id="trackList"></ul>
+              <ul id="track-list"></ul>
           </fieldset>
         </section>
 
@@ -69,11 +87,13 @@
             <p id="more">Playlist Menu</p>
             <div class="playlists">
             <div class="playlist" data-playlist="1"><p>Winter Warmth</p></div>
-            <div class="playlist" data-playlist="2"><p>Playlist 2</p></div>
-            <div class="playlist" data-playlist="3"><p>Playlist 3</p></div>
-            <div class="playlist" data-playlist="4"><p>Playlist 4</p></div>
-            <div class="playlist" data-playlist="5"><p>Playlist 5</p></div>
-            <div class="playlist" data-playlist="6"><p>Playlist 6</p></div>
+            <div class="playlist" data-playlist="2"><p>Outer Orbits</p></div>
+            <div class="playlist" data-playlist="3"><p>Summer Seaside</p></div>
+            <div class="playlist" data-playlist="4"><p>Soaring Sky</p></div>
+            <div class="playlist" data-playlist="5"><p>Forest Flora</p></div>
+            <div class="playlist" data-playlist="6"><p>Deepwater Depth</p></div>
+            <div class="playlist" data-playlist="7"><p>Moon Memento</p></div>
+            <!-- As I couldn't get the page moving, I was planning to add a scrollbox for the playlist list to make it feel more open, but the amount of playlists ended up not long enough to be needing a scrollbox.-->
             </div>
         </section>
       </div>
@@ -88,3 +108,7 @@
       </div>
   </body>
 </html>
+
+<!-- My original layout plan for this page was to divide the webpage into two sections: unscrollable fixed music player on top, scrollable menu including playlist, add playlist, explore playlist, playlist of the day features on the bottom.-->
+ <!-- However, I could NOT figure out how to lock a certain area of the webpage and nor overflow:hidden or other methods did what I wanted, so I scrapped that idea and just divided the page to 2 fixed sections, one being the music player and the other, playlist manager.-->
+  <!-- I wanted the bottom section to be a bit taller than the screen so users can scroll and feel a sense of openess, like a break, but yeah that didn't work out and currently it feels a little confining which I'm a little unsatisfied with.-->

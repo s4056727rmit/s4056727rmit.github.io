@@ -1,19 +1,22 @@
-/*body {
-    
-    margin: 0;
-    height: 200vh;
-    overflow-y: hidden;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    font-family: sans-serif;
-    background: linear-gradient(#000000 70%, #fff64e 160%);
-}*/
+.cascadia-code {
+  font-family: "Cascadia Code", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
 
-/*Hiding Scrollbar assisted with https://www.youtube.com/watch?v=BlSp2ertu_8&ab_channel=Webdev */
+.pt-serif-regular {
+  font-family: "PT Serif", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.track {
+  font-family: "PT Serif";
+}
+/*While the other font-added text required to switch between two fonts, this element does not need to switch, so I just had it added on css. */
+
 html {
-  scroll-behavior: smooth;
+  scroll-behavior: smooth; /*smooooooooth experience */
   overflow: hidden;
 }
 * ::-webkit-scrollbar {
@@ -29,22 +32,27 @@ body {
 }
 
 #player-background {
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   background-size: cover;
   background-position: bottom;
   background-image: none;
 }
 
+#now-playing {
+  max-width: 1100px;
+}
+
 .content {
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
 
   margin: 0;
   display: flex;
   flex-direction: column;
   font-family: sans-serif;
   justify-content: center;
+  padding-top: 3.2%;
   align-items: center;
   text-align: center;
 }
@@ -53,7 +61,6 @@ body {
   position: absolute;
   left: 0;
   bottom: 10%;
-
   width: 100%;
 
   margin: 0;
@@ -66,12 +73,10 @@ body {
 .arrow-section {
   position: absolute;
 
-  bottom: 20px;
+  bottom: 32px;
 }
+/*As I was midway of doing this assignment, I realised that doing grid would've probably been more easier to do for the layout I wanted, but it was too late to change so I just used position:absolute to lock down some static UIs in position. */
 
-.place-holder {
-  visibility: hidden;
-}
 .hide-cursor {
   cursor: none;
 }
@@ -87,12 +92,12 @@ body {
 #player-anchor {
   font-size: 0;
 }
+/* Creating an invisible anchor for hyperlink */
 
 .hide-background {
   position: absolute;
   top: 0;
   left: 0;
-
   transform: scale(50%);
   cursor: pointer;
 }
@@ -101,7 +106,7 @@ body {
   position: absolute;
 
   width: 100%;
-  height: 100vh;
+  height: 100%;
 
   margin: 0;
   padding-top: 50px;
@@ -113,7 +118,6 @@ body {
   font-family: sans-serif;
   background: linear-gradient(#000000 70%, #1ffbff 160%);
   font-size: 30px;
-  /* gap: 45%; */
 }
 
 #menu .each-section {
@@ -129,7 +133,7 @@ body {
 .uparrow-container {
   position: relative;
 
-  top: 20px;
+  top: 32px;
 
   display: flex;
   width: 100%;
@@ -144,7 +148,7 @@ body {
 
 .playlist {
   cursor: pointer;
-  font-size: 30px;
+  font-size: 32px;
 }
 
 fieldset {
@@ -160,13 +164,13 @@ legend {
   border-color: rgb(0, 0, 0);
   border-left-width: 80px;
   border-right-width: 80px;
-  font-size: 60px;
+  font-size: 70px;
 }
 
 /* I wanted to add some complexity to the border and discovered fieldset and legend tags from https://stackoverflow.com/questions/6357718/how-to-hide-a-part-of-a-css-borderline-nicely. */
 
 li {
-  font-size: 30px;
+  font-size: 23px;
   color: white;
   padding-bottom: 20px;
 }
@@ -191,18 +195,16 @@ button {
 .volume {
   scale: 100%;
   accent-color: white;
-  cursor: pointer;
+  /* cursor: pointer; */
 }
+/*Still not sure why the cursor changes at a couple pixel above and below the actual bar. */
 
-p {
-  color: white;
-}
-
+p,
 h1 {
   color: white;
 }
 
 #more {
   text-align: center;
-  font-size: 38px;
+  font-size: 60px;
 }
