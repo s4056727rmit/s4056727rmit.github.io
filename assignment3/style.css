@@ -1,0 +1,149 @@
+* {
+  user-select: none;
+}
+/* For the first version, the sides contained text to show which side the user is on and the hold and drag to rotate function was very glitchy. After couple of testing I figured that the words on each side being selectable might be the problem so I researched a way to remove it assisted by W3School https://www.w3schools.com/howto/howto_css_disable_text_selection.asp. However, I decided that assigning each face to a side was not necessary in playing the game so I removed the text. */
+
+:root {
+  --cube-width: 300px;
+  --translateZ: 150px;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  background: black;
+}
+
+header {
+  color: white;
+  display: flex;
+  align-items: center;
+  height: 100vh;
+  justify-content: center;
+  flex-direction: column;
+  gap: 12%;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 100px;
+}
+
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.cube-container {
+  perspective: 1000px;
+  cursor: grab;
+  position: relative;
+}
+
+.cube-container:active {
+  cursor: grabbing;
+}
+
+.cube-container .cube {
+  width: var(--cube-width);
+  height: var(--cube-width);
+  transform-style: preserve-3d;
+}
+
+.cube-container .cube-face {
+  width: 300px;
+  height: 300px;
+  font-size: 30px;
+  color: black;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+}
+
+.cube-container .front {
+  background-color: tomato;
+  transform: translateZ(var(--translateZ));
+  border: 2px solid white;
+}
+
+.cube-container .back {
+  background-color: cornflowerblue;
+  transform: rotateY(180deg) translateZ(var(--translateZ));
+  border: 2px solid white;
+}
+
+.cube-container .left {
+  background-color: lightgreen;
+  transform: rotateY(-90deg) translateZ(var(--translateZ));
+  border: 2px solid white;
+}
+
+.cube-container .right {
+  background-color: hotpink;
+  transform: rotateY(90deg) translateZ(var(--translateZ));
+  border: 2px solid white;
+}
+
+.cube-container .top {
+  background-color: blueviolet;
+  transform: rotateX(90deg) translateZ(var(--translateZ));
+  border: 2px solid white;
+}
+
+.cube-container .bottom {
+  background-color: coral;
+  transform: rotateX(-90deg) translateZ(var(--translateZ));
+  border: 2px solid white;
+}
+
+.start-button {
+  padding: 15px 30px;
+  font-size: 20px;
+  font-weight: bold;
+  background: transparent;
+  background-color: cadetblue;
+  color: white;
+  border: 2px solid white;
+  border-radius: 25px;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+
+.start-button:active {
+  transform: scale(0.90);
+}
+
+.number-button {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 2px solid;
+  border-color: aqua;
+  background-color: transparent;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+}
+
+.number-button:hover {
+  background: orange;
+}
+/* I wanted to make the buttons not overlap each other if possible, but I figured out that would be difficult to add on. Instead, I added a change in style when user is hovering over a button to allow them to be sure of which button they're pressing. */
+
+.timer {
+  display: flex;
+  gap: 15px;
+  font-size: 50px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* For the visual style, I originally planned the cube to be have a monotonic semi-lightblue(colour of the start button) with thick black outlines on a white background, more fitting to the context of an iq puzzle. However, It seemed a bit bland and there were moments where scrolling directions had confusing opitcal illusion so I gave them colours to make each side a bit more distinguishable. Because the colours are bright, for darker colour suited the buttons a bit more in terms of visibility, but it didn't look nice so I went along with the original colour I had in mind for the buttons.  
