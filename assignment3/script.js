@@ -38,7 +38,8 @@ const mouseMove = (event) => {
   cube.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
 };
 //The cube from the tutorial was rotated through simply moving the cursor around, which was not fitting for my project. Therefore I did some research and assisted by W3School https://www.w3schools.com/html/html5_draganddrop.asp and Youtube Tutorial: Drag & Drop with Javascript in 4 minutes by Appwrite https://www.youtube.com/watch?v=ymDjvycjgUM&ab_channel=Appwrite, I've changed the function to mouseDown, mouseMove and mouseUp which allows me to change the value of the cube through moving the cursor.
-
+//By having hold and drag function for the cube interaction, it separates the function from the click function of the button, which will not interfere in carrying out it's primary goal of clicking buttons.
+//For future projects, this could help me to design different performances to different functions so the functions don't overlap with each other, like how I removed the text select which interfered with the rotation.
 const mouseUp = (event) => {
   if (!isDragging) return;
 
@@ -53,7 +54,7 @@ const mouseUp = (event) => {
     currentRotateY + (deltaX / window.innerWidth) * rotationValue;
 };
 //After getting hold and drag as the trigger for cube rotation, I came to an issue where the cube moved back to its original form for every new drag. Assisted by my friend, I've created a new const for the currentRotationValue and make the mouseMove function start at that value.
-
+//I could use this method to create more complex 3D interactable shapes, or even have the whole webpage as a rotatable object to make interesting design, which actually sounds kinda nice.
 cubeContainer.addEventListener("mousedown", mouseDown);
 window.addEventListener("mousemove", mouseMove);
 window.addEventListener("mouseup", mouseUp);
@@ -100,7 +101,7 @@ function generateButtons() {
   console.log("6 buttons generated on random faces!");
 }
 //Assisted by Google response, I've created a function to generate buttons in a numeric order which generates around random positions, excluding the edges, of a random face of the cube when start button is clicked.
-
+//While this method is useful, having completely random values could actually end up feeling unnatural, like having all variables on one side. For future projects, I will explore further into possibility formulas to create more naturally random generations.
 function stopwatch() {
   if (timer) {
     milisecond++;
@@ -167,5 +168,7 @@ function handleButtonClick(number) {
   }
 }
 //Removes the button once its clicked and whne the clickedButtonId is equal to lastButton value, it stops the timer.
+//I originally has the buttons assigned with fixed value, like once the value of the clickedButtonId equals to 6, end the function, but my friend taught me how to create a const to have more flexible function. Hence now if I assign a differnet value to the lastButton, that number of buttons will be generated and yet the code will function the same.
+//This could be useful in dealing and creating more complex coding with changing variables in future projects.
 
 //If I had time, I would've liked to add a scoreboard which tracks and keeps the top 5 fastest record made per session, but I ran out of time and effort and braincells to have any additional features.. at least I think the fundamental function does it's job (EXCEPT FOR THE TIMER)
